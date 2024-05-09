@@ -25,6 +25,7 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem 'arctic_admin'
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
@@ -53,12 +54,14 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "activeadmin"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'sass-rails'
 end
 
 group :test do
@@ -67,8 +70,9 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "activeadmin"
+
 gem "devise"
 gem 'sass-rails'
 gem 'kaminari'
-gem 'arctic_admin'
+
+
