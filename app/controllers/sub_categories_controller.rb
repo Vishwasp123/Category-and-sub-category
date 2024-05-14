@@ -2,14 +2,15 @@ class SubCategoriesController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 	before_action :set_sub_categories, only: %i[show destroy update]
+	before_action :set_category
 
 	def index
-		@sub_categories = SubCategory.all 
-		render json: {messages: "SubCategories", sub_categories: @sub_categories}
+		@sub_categories = @category.sub_categories
+		render json: { messages: "SubCategories", sub_categories: @sub_categories }
 	end
 
-	def show
-		@subcategory = SubCategory.find(params[:id]) 
+
+	def show 
 		if @subcategory
 			render json: { messages: "SubCategory Details", sub_category: @subcategory.name, category: @subcategory.category.name }
 		else
@@ -19,7 +20,7 @@ class SubCategoriesController < ApplicationController
 
 
 	def create
-		@sub_category = SubCategory.new(subcategories_params)
+		@sub_category = @category.sub_categories.new(sub_categories_params)
 		if @sub_category.save
 			render json: {messages: "sub_category create succefull", sub_category: @sub_category}
 		else
@@ -28,7 +29,7 @@ class SubCategoriesController < ApplicationController
 	end
 
 	def update
-		if @sub_category.update(subcategories_params)
+		if @sub_category.update(sub_categories_params)
 			render json: {messages: "Update Subcategories", sub_category: @sub_category }
 		else
 			render json: {messages: "Not Update"} 
@@ -45,9 +46,15 @@ class SubCategoriesController < ApplicationController
 
 	def set_sub_categories
 		@sub_category = SubCategory.find(params[:id])
+
 	end
 
-	def subcategories_params
+	def sub_categories_params
 		params.require(:sub_category ).permit(:name, :category_id)
 	end
+
+	def set_category
+		@category = Category.find(params[:category_id])
+	end
+
 end

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :categories do 
+ resources :categories do
     resources :sub_categories
   end
 end
