@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :sub_category do
-    name { "Women's Clothing" }
+    name { Faker::Lorem.word }
     association :category
     
   end
